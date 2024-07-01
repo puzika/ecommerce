@@ -1,3 +1,3 @@
-Ecommerce app
+# Ecommerce app
 
 React practice project
