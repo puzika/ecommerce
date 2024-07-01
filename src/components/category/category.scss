@@ -1,0 +1,18 @@
+.category {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 30rem;
+   min-width: 30rem;
+   flex: 1;
+   background-position: center;
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
+   border: .2rem solid black;
+   transition: background-size .5s ease-out;
+   cursor: pointer;
+
+   &:hover {
+      background-size: 120% 120%;
+   }
+}
