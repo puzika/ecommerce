@@ -11,6 +11,7 @@ export default function Header() {
             </Link>
             <nav className="header__nav">
                <Link className="header__nav-link" to={'/shop'}>Shop</Link>
+               <Link className="header__nav-link" to={'/sign-in'}>Sign in</Link>
             </nav>
          </header>
 
