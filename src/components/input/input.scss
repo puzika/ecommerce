@@ -1,0 +1,36 @@
+.input {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   border-bottom: .1rem solid black;
+
+   &__label,
+   &__field {
+      font-size: 2rem;
+      color: rgb(89, 89, 89);
+   }
+
+   &__label {
+      position: absolute;
+      left: .5rem;
+      top: 50%;
+      translate: 0 -50%;
+      transition: all .25s;
+   }
+
+   &__field {
+      flex: none;
+      padding: 1rem .5rem;
+      height: 4rem;
+      border: none;
+      outline: none;
+   }
+
+   &__field:focus ~ &__label,
+   &__label--shrinked {
+      top: 0;
+      left: 0;
+      translate: 0 -100%;
+      font-size: 1.2rem;
+   }
+}
