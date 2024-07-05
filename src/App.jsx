@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './routes/home/home';
 import Header from './routes/header/header';
-import SignIn from './routes/sign-in/sign-in';
+import Authentication from './routes/authentication/authentication';
 
 function Shop() {
   return (
@@ -15,7 +15,7 @@ export default function App() {
       <Route path='/' element={<Header></Header>}>
         <Route index element={<Home></Home>}></Route>
         <Route path='shop' element={<Shop></Shop>}></Route>
-        <Route path='sign-in' element={<SignIn></SignIn>}></Route>
+        <Route path='sign-in' element={<Authentication></Authentication>}></Route>
       </Route>
     </Routes>
   )

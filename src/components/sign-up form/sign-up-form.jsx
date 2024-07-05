@@ -89,7 +89,7 @@ export default function SignUpForm() {
                name: 'confirmpassword', 
                value: confirmpassword
             }}></Input>
-            <Button styleType={'default'} text={'Sign up'}></Button>
+            <Button text={'Sign up'}></Button>
          </form>
       </div>
    )
