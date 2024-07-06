@@ -1,4 +1,4 @@
-.sign-up {
+.sign-in {
    &__heading {
       font-size: 2.5rem;
       margin-bottom: 1rem;
@@ -14,9 +14,12 @@
       display: flex;
       flex-direction: column;
       gap: 4rem;
+   }
 
-      & > button {
-         align-self: center;
-      }
+   &__btns {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      color: rgb(89, 89, 89);
    }
 }

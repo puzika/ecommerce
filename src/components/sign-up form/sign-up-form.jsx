@@ -49,7 +49,7 @@ export default function SignUpForm() {
    
    return (
       <div className="sign-up">
-         <h2 className="sign-up__heading">Don't have an account</h2>
+         <h2 className="sign-up__heading">Don't have an account?</h2>
          <p className="sign-up__subheading">Sign up with your email and password</p>
 
          <form className="sign-up__form" onSubmit={handleSubmit}>
