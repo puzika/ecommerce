@@ -1,8 +1,20 @@
+import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import CrownLogo from '../../assets/crown.svg';
+import { UserContext } from "../../contexts/user";
+import { signOutAuthUser } from "../../utils/firebase";
 import "./header.scss";
 
 export default function Header() {
+   const {currentUser, setCurrentUser} = useContext(UserContext);
+   console.log(currentUser);
+
+   async function handClick() {
+      await signOutAuthUser();
+      setCurrentUser(null);
+      console.log(currentUser);
+   }
+   
    return (
       <>
          <header className="header">
@@ -11,7 +23,13 @@ export default function Header() {
             </Link>
             <nav className="header__nav">
                <Link className="header__nav-link" to={'/shop'}>Shop</Link>
-               <Link className="header__nav-link" to={'/sign-in'}>Sign in</Link>
+               {
+                  currentUser ? (
+                     <span onClick={handClick} className="header__nav-link">Sign out</span>
+                  ) : (
+                     <Link className="header__nav-link" to={'/sign-in'}>Sign in</Link>
+                  )
+               }
             </nav>
          </header>
 
