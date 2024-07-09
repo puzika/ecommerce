@@ -24,7 +24,7 @@ export default function Header() {
                   currentUser ? (
                      <span onClick={handClick} className="header__nav-link">Sign out</span>
                   ) : (
-                     <Link className="header__nav-link" to={'/sign-in'}>Sign in</Link>
+                     <Link className="header__nav-link" to={'/auth'}>Sign in</Link>
                   )
                }
             </nav>
