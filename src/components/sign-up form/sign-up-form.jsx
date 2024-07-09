@@ -15,7 +15,6 @@ const defaultFormFields = {
 export default function SignUpForm() {
    const [formFields, setFormFields] = useState(defaultFormFields);
    const { displayName, email, password, confirmpassword } = formFields;
-   const {setCurrentUser} = useContext(UserContext);
 
    function resetFormFields() {
       setFormFields(defaultFormFields);
@@ -38,14 +37,18 @@ export default function SignUpForm() {
 
       try {
          const {user} = await createAuthUserWithEmailAndPassword(email, password);
-         const userDocRef = await createUserWithDocFromAuth({...user, displayName});
-         setCurrentUser(user);
+         await createUserWithDocFromAuth({...user, displayName});
          resetFormFields();
       } catch (error) {
-         if (error.code === 'auth/email-already-in-use') {
-            alert('Cannot create user, email already in use');
-         } else {
-            console.log('user creation encountered an error', error);
+         switch (error.code) {
+            case 'auth/email-already-in-use':
+               alert('Cannot create user, email already in use');
+               break;
+            case 'auth/weak-password':
+               alert('Weak passwrod. Password must be at least 6 characters');
+               break;
+            default:
+               console.log('user creation encountered an error', error);
          }
       }
    }

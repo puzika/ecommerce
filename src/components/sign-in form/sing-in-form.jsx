@@ -1,12 +1,10 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { 
    signInWithGooglePopup,
    signInAuthUserWithEmailAndPassword,
-   createUserWithDocFromAuth,
 } from "../../utils/firebase";
 import Input from "../input/input";
 import Button from "../button/button";
-import { UserContext } from "../../contexts/user";
 import './sign-in-form.scss';
 
 const defaultFormFields = {
@@ -18,8 +16,6 @@ export default function SignInForm() {
    const [formFields, setFormFields] = useState(defaultFormFields);
    const { email, password } = formFields;
 
-   const {setCurrentUser} = useContext(UserContext);
-
    function resetFormFields() {
       setFormFields(defaultFormFields);
    }
@@ -30,17 +26,11 @@ export default function SignInForm() {
       setFormFields({...formFields, [name]: value});
    }
 
-   async function signInWithGoogle() {
-      const {user} = await signInWithGooglePopup();
-      await createUserWithDocFromAuth(user);
-   }
-
    async function handleSubmit(e) {
       e.preventDefault();
 
       try {
-         const {user} = await signInAuthUserWithEmailAndPassword(email, password);
-         setCurrentUser(user);
+         await signInAuthUserWithEmailAndPassword(email, password);
          resetFormFields();
       } catch (error) {
          switch(error.code) {
@@ -83,7 +73,7 @@ export default function SignInForm() {
             <div className="sign-in__btns">
                <Button text={'Sign in'}></Button>
                <span>or</span>
-               <Button onClick={signInWithGoogle} type='button' styleType={'google'} text={'Sign in with Google'}></Button>
+               <Button onClick={signInWithGooglePopup} type='button' styleType={'google'} text={'Sign in with Google'}></Button>
             </div>
          </form>
       </div>

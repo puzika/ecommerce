@@ -6,13 +6,10 @@ import { signOutAuthUser } from "../../utils/firebase";
 import "./header.scss";
 
 export default function Header() {
-   const {currentUser, setCurrentUser} = useContext(UserContext);
-   console.log(currentUser);
+   const { currentUser } = useContext(UserContext);
 
    async function handClick() {
       await signOutAuthUser();
-      setCurrentUser(null);
-      console.log(currentUser);
    }
    
    return (
