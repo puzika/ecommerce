@@ -1,0 +1,28 @@
+.dropdown {
+   position: absolute;
+   top: 100%;
+   right: 0;
+   width: 30rem;
+   height: 40rem;
+   background-color: white;
+   border: .1rem solid black;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 2rem;
+   overflow-y: scroll;
+   transition: all .3s;
+
+   &__items {
+      flex: 1;
+   }
+
+   &--hidden {
+      visibility: hidden;
+      opacity: 0;
+   }
+
+   &::-webkit-scrollbar {
+      display: none;
+   }
+}

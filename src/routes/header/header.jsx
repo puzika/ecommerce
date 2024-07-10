@@ -4,6 +4,7 @@ import { UserContext } from "../../contexts/user";
 import { signOutAuthUser } from "../../utils/firebase";
 import CrownLogo from '../../assets/crown.svg';
 import Cart from "../../components/cart/cart";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown";
 import "./header.scss";
 
 export default function Header() {
@@ -30,6 +31,7 @@ export default function Header() {
                }
                <Cart></Cart>
             </nav>
+            <CartDropdown></CartDropdown>
          </header>
 
          <Outlet></Outlet>
