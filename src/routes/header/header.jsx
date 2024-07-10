@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
-import CrownLogo from '../../assets/crown.svg';
 import { UserContext } from "../../contexts/user";
 import { signOutAuthUser } from "../../utils/firebase";
+import CrownLogo from '../../assets/crown.svg';
+import Cart from "../../components/cart/cart";
 import "./header.scss";
 
 export default function Header() {
@@ -27,6 +28,7 @@ export default function Header() {
                      <Link className="header__nav-link" to={'/auth'}>Sign in</Link>
                   )
                }
+               <Cart></Cart>
             </nav>
          </header>
 

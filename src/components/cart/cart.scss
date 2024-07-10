@@ -1,0 +1,18 @@
+.cart {
+   height: 4rem;
+   position: relative;
+   padding: 0 1rem;
+   cursor: pointer;
+
+   &__img {
+      height: 100%;
+   }
+
+   &__items {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      translate: -50% -50%;
+      font-size: 1.4rem;
+   }
+}
