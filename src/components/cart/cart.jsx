@@ -4,7 +4,7 @@ import BagIcon from '../../assets/bag-icon.svg';
 import { CartContext } from '../../contexts/cart';
 
 export default function Cart() {
-   const {isOpen, setCartState} = useContext(CartContext);
+   const {isOpen, cartCount, setCartState} = useContext(CartContext);
 
    function handleClick() {
       setCartState(!isOpen);
@@ -13,7 +13,7 @@ export default function Cart() {
    return (
       <div onClick={handleClick} className='cart'>
          <img className="cart__img" src={BagIcon} alt="bag icon" />
-         <span className="cart__items">0</span>
+         <span className="cart__items">{cartCount}</span>
       </div>
    )
 }
