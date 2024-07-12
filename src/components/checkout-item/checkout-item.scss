@@ -13,4 +13,15 @@
    &__remove {
       padding: 1rem;
    }
+
+   &__quantity {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+   }
+
+   &__quantity-control {
+      width: 2.5rem;
+      cursor: pointer;
+   }
 }
