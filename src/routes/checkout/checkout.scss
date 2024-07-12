@@ -18,4 +18,12 @@
    &__column-titles {
       font-size: 1.4rem;
    }
+
+   &__total {
+      flex-direction: row-reverse;
+      font-size: 4rem;
+      text-transform: uppercase;
+      padding: 2.5rem;
+      border: none;
+   }
 }

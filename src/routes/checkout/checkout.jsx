@@ -4,7 +4,7 @@ import CheckoutItem from '../../components/checkout-item/checkout-item';
 import './checkout.scss';
 
 export default function Checkout() {
-   const {cartItems} = useContext(CartContext);
+   const {cartItems, totalCost} = useContext(CartContext);
 
    return (
       <div className="checkout">
@@ -23,6 +23,7 @@ export default function Checkout() {
                         <CheckoutItem product={item}></CheckoutItem>
                      ))
                   }
+                  <p className='checkout__total'>total: ${totalCost}</p>
                </>
             ) : (
                <p>No items to check out</p>
