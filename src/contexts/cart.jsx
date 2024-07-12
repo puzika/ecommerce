@@ -5,6 +5,7 @@ export const CartContext = createContext({
    isOpen: false,
    setCartState: () => null,
    cartItems: [],
+   removeItem: () => null,
    addItem: () => null,
    cartCount: 0,
 });
@@ -34,7 +35,13 @@ export function CartProvider({children}) {
       setCartItems(() => newItems);
    }
 
-   const value = {isOpen, setCartState, cartItems, addItem, cartCount};
+   function removeItem(product) {
+      const newItems = cartItems.filter(item => item.id !== product.id);
+
+      setCartItems(newItems);
+   }
+
+   const value = {isOpen, setCartState, cartItems, addItem, cartCount, removeItem};
 
    return (
       <CartContext.Provider value={value}>{children}</CartContext.Provider>

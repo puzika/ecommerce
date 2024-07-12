@@ -1,7 +1,15 @@
+import { useContext } from 'react';
+import { CartContext } from '../../contexts/cart';
+import XIcon from '../x-icon/x-icon';
 import './checkout-item.scss';
 
 export default function CheckoutItem({product}) {
    const { imageUrl, quantity, price, name} = product;
+   const {removeItem} = useContext(CartContext);
+
+   function handleRemove() {
+      removeItem(product);
+   }
 
    return (
       <div className="checkout-item">
@@ -13,7 +21,7 @@ export default function CheckoutItem({product}) {
             <p>{quantity}</p>
          </div>
          <p>{price}</p>
-         <p>remove</p>
+         <div className='checkout-item__remove'><XIcon onClick={handleRemove}></XIcon></div>
       </div>
    );
 }
