@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CartContext } from '../../contexts/cart';
 import CartItem from '../cart-item/cart-item';
 import Button from '../button/button';
@@ -19,7 +20,7 @@ export default function CartDropdown() {
                )
             }
          </div>
-         <Button text='Go to checkout'></Button>
+         <Link to='/checkout'><Button text='Go to checkout'></Button></Link>
       </div>
    )
 }

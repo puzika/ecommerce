@@ -1,0 +1,12 @@
+.checkout-item {
+   display: flex;
+   font-size: 1.8rem;
+
+   & > * {
+      flex: 1;
+   }
+
+   &__img {
+      width: 100%;
+   }
+}
