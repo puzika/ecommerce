@@ -60,7 +60,7 @@ export async function getCategoriesAndDocuments() {
 
    const categories = querySnapshots.docs.reduce((acc, snapshot) => {
       const { title, items } = snapshot.data();
-      acc.set(title, items);
+      acc.set(title.toLowerCase(), items);
       return acc;
    }, new Map());
 

@@ -10,7 +10,7 @@ export default function App() {
     <Routes>
       <Route path='/' element={<Header></Header>}>
         <Route index element={<Home></Home>}></Route>
-        <Route path='shop' element={<Shop></Shop>}></Route>
+        <Route path='shop/*' element={<Shop></Shop>}></Route>
         <Route path='auth' element={<Authentication></Authentication>}></Route>
         <Route path='checkout' element={<Checkout></Checkout>}></Route>
       </Route>
