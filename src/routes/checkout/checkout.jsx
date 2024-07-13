@@ -20,7 +20,7 @@ export default function Checkout() {
                   </div>
                   {
                      cartItems.map(item => (
-                        <CheckoutItem product={item}></CheckoutItem>
+                        <CheckoutItem key={item.id} product={item}></CheckoutItem>
                      ))
                   }
                   <p className='checkout__total'>total: ${totalCost}</p>

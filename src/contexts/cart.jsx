@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import Cart from "../components/cart/cart";
 
 export const CartContext = createContext({
    isOpen: false,

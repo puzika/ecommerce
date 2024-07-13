@@ -12,7 +12,9 @@ import {
    getFirestore,
    doc,
    getDoc,
-   setDoc
+   setDoc,
+   collection,
+   writeBatch
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -35,6 +37,19 @@ provider.setCustomParameters({
 export const auth = getAuth(firebaseApp);
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 export const db = getFirestore();
+
+export async function addCollectionAndItem(collectionKey, objectsToAdd) {
+   const collectionRef = collection(db, collectionKey);
+   const batch = writeBatch(db);
+
+   objectsToAdd.forEach(obj => {
+      const docRef = doc(collectionRef, obj.title.toLowerCase());
+      batch.set(docRef, obj);
+   });
+
+   await batch.commit();
+   console.log('done');
+}
 
 export async function createUserWithDocFromAuth(userAuth) {
    if (!userAuth) return;
