@@ -1,5 +1,8 @@
 .products {
    padding: 0 2rem;
+   display: flex;
+   flex-direction: column;
+   gap: 10rem;
 
    &__heading {
       margin-bottom: 5rem;
