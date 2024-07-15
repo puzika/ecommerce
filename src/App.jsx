@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from './routes/home/home';
-import Header from './routes/header/header';
-import Authentication from './routes/authentication/authentication';
-import Shop from './routes/shop/shop';
-import Checkout from './routes/checkout/checkout';
+import Home from './routes/home/home.component';
+import Header from './routes/header/header.component';
+import Authentication from './routes/authentication/authentication.component';
+import Shop from './routes/shop/shop.component';
+import Checkout from './routes/checkout/checkout.component';
 
 export default function App() {
   return (
