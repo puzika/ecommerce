@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 export const CartContext = createContext({
    isOpen: false,
@@ -11,24 +11,76 @@ export const CartContext = createContext({
    cartCount: 0,
 });
 
-export function CartProvider({children}) {
-   const [isOpen, setCartState] = useState(false);
-   const [cartItems, setCartItems] = useState([]);
-   const [cartCount, setCartCount] = useState(0);
-   const [totalCost, setTotalCost] = useState(0);
+export const CART_ACTION_TYPES = {
+   SET_CART_ITEMS: 'SET_CART_ITEMS',
+   SET_CART_STATE: 'SET_CART_STATE',
+}
 
-   useEffect(() => {
+function cartReducer(state, action) {
+   const {type, payload} = action;
+   console.log('dispatched');
+
+   switch (type) {
+      case CART_ACTION_TYPES.SET_CART_ITEMS:
+         return {
+            ...state,
+            ...payload,
+         };
+      case CART_ACTION_TYPES.SET_CART_STATE:
+         return {
+            ...state,
+            isOpen: payload,
+         };
+      default:
+         throw new Error(`unhandled type ${type} in cartReducer`);
+   }
+}
+
+const INITIAL_STATE = {
+   isOpen: false,
+   cartItems: [],
+   totalCost: 0,
+   cartCount: 0,
+}
+
+export function CartProvider({children}) {
+   const [ { isOpen, cartItems, totalCost, cartCount }, dispatch ] = useReducer(cartReducer, INITIAL_STATE);
+   // const [isOpen, setCartState] = useState(false);
+   // const [cartItems, setCartItems] = useState([]);
+   // const [cartCount, setCartCount] = useState(0);
+   // const [totalCost, setTotalCost] = useState(0);
+
+   // useEffect(() => {
+      // let newCount = 0;
+      // let newTotalCost = 0;
+
+      // for (const item of cartItems) {
+      //    newCount += item.quantity;
+      //    newTotalCost += item.quantity * item.price;
+      // }
+
+   //    setCartCount(newCount);
+   //    setTotalCost(newTotalCost);
+   // }, [cartItems]);
+
+   function updateCart(newCartItems) {
       let newCount = 0;
       let newTotalCost = 0;
 
-      for (const item of cartItems) {
+      for (const item of newCartItems) {
          newCount += item.quantity;
          newTotalCost += item.quantity * item.price;
       }
 
-      setCartCount(newCount);
-      setTotalCost(newTotalCost);
-   }, [cartItems]);
+      dispatch({
+         type: CART_ACTION_TYPES.SET_CART_ITEMS,
+         payload: {
+            cartItems: newCartItems,
+            totalCost: newTotalCost,
+            cartCount: newCount,
+         }
+      });
+   }
 
    function addItem(product) {
       let exists = false;
@@ -42,29 +94,36 @@ export function CartProvider({children}) {
 
       const newItems = exists ? items : [...cartItems, {...product, quantity: 1}];
 
-      setCartItems(() => newItems);
+      updateCart(newItems);
    }
 
    function removeItem(product) {
-      const items = [];
+      const newItems = [];
 
       for (const item of cartItems) {
          if (item.id === product.id) {
             const quantity = item.quantity - 1;
             
-            if (quantity !== 0) items.push({...item, quantity});
+            if (quantity !== 0) newItems.push({...item, quantity});
          } else {
-            items.push(item);
+            newItems.push(item);
          }
       }
 
-      setCartItems(items);
+      updateCart(newItems);
    }
 
    function removeProduct(product) {
       const newItems = cartItems.filter(item => item.id !== product.id);
 
-      setCartItems(newItems);
+      updateCart(newItems);
+   }
+
+   function setCartState() {
+      dispatch({
+         type: 'SET_CART_STATE',
+         payload: !isOpen,
+      });
    }
 
    const value = {isOpen, setCartState, cartItems, addItem, cartCount, removeProduct, removeItem, totalCost};
