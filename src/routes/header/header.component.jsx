@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import { Outlet, Link } from "react-router-dom";
 import { UserContext } from "../../contexts/user";
 import { signOutAuthUser } from "../../utils/firebase";
@@ -13,7 +14,8 @@ import {
 } from "./header.styles";
 
 export default function Header() {
-   const { currentUser } = useContext(UserContext);
+   // const { currentUser } = useContext(UserContext);
+   const currentUser = useSelector((state) => state.user.currentUser);
 
    async function handClick() {
       await signOutAuthUser();
