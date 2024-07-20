@@ -1,7 +1,7 @@
 import { SHOP_ACTION_TYPES } from "./shop.types";
 
 const INITIAL_STATE = {
-   categories: new Map()
+   categories: [],
 };
 
 export function shopReducer(state = INITIAL_STATE, action) {

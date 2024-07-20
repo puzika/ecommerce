@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, Link } from "react-router-dom";
 import { UserContext } from "../../contexts/user";
+import { selectCurrentUser } from "../../store/user/user.selector";
 import { signOutAuthUser } from "../../utils/firebase";
 import CrownLogo from '../../assets/crown.svg';
 import Cart from "../../components/cart/cart.component";
@@ -15,7 +16,7 @@ import {
 
 export default function Header() {
    // const { currentUser } = useContext(UserContext);
-   const currentUser = useSelector((state) => state.user.currentUser);
+   const currentUser = useSelector(selectCurrentUser);
 
    async function handClick() {
       await signOutAuthUser();

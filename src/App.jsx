@@ -6,7 +6,7 @@ import Shop from './routes/shop/shop.component';
 import Checkout from './routes/checkout/checkout.component';
 import { useEffect } from "react"; 
 import { useDispatch } from 'react-redux';
-import { setCurrentUser } from './store/user/use.action';
+import { setCurrentUser } from './store/user/user.action';
 import { createUserWithDocFromAuth, onAuthStateChangedEvent } from "./utils/firebase";
 
 export default function App() {

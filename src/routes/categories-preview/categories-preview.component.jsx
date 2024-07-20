@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { selectCategories } from '../../store/shop/shop.selector';
 import { CategoriesContext } from '../../contexts/shop';
 import Product from '../../components/product/product.component';
 import {
@@ -12,7 +13,7 @@ import {
 
 export default function CategoriesPreview() {
    // const { categories } = useContext(CategoriesContext);
-   const categories = useSelector((state) => state.shop.categories);
+   const categories = useSelector(selectCategories);
    const categoriesArray = [...categories.entries()];
 
    return (
