@@ -4,10 +4,15 @@ const selectorCategoryReducer = state => state.shop;
 
 export const selectCategoriesMemoized = createSelector(
    [selectorCategoryReducer],
-   (shopSlice) => {
-      return shopSlice.categories
+   shop => {
+      return shop.categories
    },
 )
+
+export const selectIsLoading = createSelector(
+   [selectorCategoryReducer],
+   shop => shop.isLoading
+);
 
 export const selectCategories = createSelector(
    [selectCategoriesMemoized],
